@@ -18,6 +18,7 @@ export class ListComponent implements OnInit {
   displayedColumns: string[] = ['created', 'state', 'number', 'title'];
   exampleDatabase: ExampleHttpDatabase | null;
   data: GithubIssue[] = [];
+  dataFiltered: GithubIssue[] = [];
 
   resultsLength = 0;
   isLoadingResults = true;
@@ -60,7 +61,14 @@ export class ListComponent implements OnInit {
           this.isRateLimitReached = true;
           return observableOf([]);
         })
-      ).subscribe(data => this.data = data);
+      ).subscribe(data => {
+        this.data = data
+        this.dataFiltered = data;
+      });
+
+      this.filter.valueChanges.pipe(debounceTime(1000)).subscribe(x=>{
+        this.dataFiltered = this.data.filter(y=>y.title.toLowerCase().includes(x.toLowerCase()));
+      })
   }
 
   openDetail(id: number) {
