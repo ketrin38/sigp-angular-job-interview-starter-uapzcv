@@ -1,1 +1,6 @@
-
+<ul *ngIf="currIss" >
+  <li>User: {{currIss?.user?.login}}</li>
+  <li>Title: {{currIss?.title}}</li>
+  <li>State: {{currIss?.state}}</li>
+  <li>Home url: {{currIss?.user?.html_url}}</li>
+</ul>

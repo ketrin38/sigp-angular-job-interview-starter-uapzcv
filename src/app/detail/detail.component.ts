@@ -14,7 +14,7 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   private _unsubscribeAll: Subject<any>;
   private data: GithubIssue;
-
+  public currIss;
   constructor(
     private http: HttpClient,
     private activatedRoute: ActivatedRoute,
@@ -24,12 +24,17 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-   this.activatedRoute.params.subscribe(x=>{
-          this.http.get(`https://api.github.com/repos/angular/material2/issues/${x.id}`).subscribe(y=>{
-    console.log(y);
+     this.activatedRoute.params.subscribe(x=>{
+          this.http.get(`https://api.github.com/repos/angular/angular/issues/${x.id}`).subscribe(y=>{
+    this.currIss = y;
     });
+  //  this.activatedRoute.params.subscribe(x=>{
+  //         this.http.get(`https://api.github.com/repos/angular/material2/issues/${x.id}`).subscribe(y=>{
+  //   console.log(y);
+  //   });
     })
 
+// https://api.github.com/repos/octocat/Hello-World/issues/
   
 
   }
