@@ -22,6 +22,10 @@ const appRoutes: Routes = [
   {
     path: 'list',
     component: ListComponent
+  }, 
+  {
+    path:'',
+    component: HomeComponent,
   }
 ];
 
