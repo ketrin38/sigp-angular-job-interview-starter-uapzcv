@@ -13,6 +13,7 @@ import { ListComponent } from './list/list.component';
 import { ListModule } from './list/list.module';
 import { DetailModule } from './detail/detail.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MyInterceptor} from './my-interceptor';
 const appRoutes: Routes = [
   {
     path: 'home',
@@ -46,8 +47,11 @@ const appRoutes: Routes = [
     ListModule,
     DetailModule
   ],
-  providers: [
-
+  providers: [{
+    provide:HTTP_INTERCEPTORS,
+    useClass:MyInterceptor,
+    multi:true
+  }
   ],
   // exports:[LogoComponent],
   declarations: [AppComponent],
