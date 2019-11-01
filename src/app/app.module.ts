@@ -13,7 +13,6 @@ import { ListComponent } from './list/list.component';
 import { ListModule } from './list/list.module';
 import { DetailModule } from './detail/detail.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
 const appRoutes: Routes = [
   {
     path: 'home',
@@ -26,7 +25,11 @@ const appRoutes: Routes = [
   {
     path:'',
     component: HomeComponent,
-  }
+  }, 
+  {
+    path: 'list/:id',
+    component: DetailComponent
+  } 
 ];
 
 @NgModule({
@@ -39,7 +42,6 @@ const appRoutes: Routes = [
     FormsModule,
 
     MatToolbarModule,
-
     HomeModule,
     ListModule,
     DetailModule
@@ -47,6 +49,7 @@ const appRoutes: Routes = [
   providers: [
 
   ],
+  // exports:[LogoComponent],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
 })

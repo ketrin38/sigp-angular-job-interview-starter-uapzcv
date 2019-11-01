@@ -16,12 +16,21 @@ export class DetailComponent implements OnInit, OnDestroy {
   private data: GithubIssue;
 
   constructor(
-    private activatedRoute: ActivatedRoute
+    private http: HttpClient,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
   ) {
     this._unsubscribeAll = new Subject();
   }
 
   ngOnInit() {
+   this.activatedRoute.params.subscribe(x=>{
+          this.http.get(`https://api.github.com/repos/angular/material2/issues/${x.id}`).subscribe(y=>{
+    console.log(y);
+    });
+    })
+
+  
 
   }
 
